@@ -1,0 +1,46 @@
+[
+  {
+    "name":  "The Centers for Disease Control and Prevention",
+    "nickname": "CDC",
+    "tag": "Federal",
+    "locale": "National",
+    "parser": {
+      "type": "TwitterParser",
+      "handle": "CDCgov",
+      "mustContainKeyword": []
+    }
+  },
+  {
+    "name":  "Zuckerberg San Francisco General Hospital",
+    "tag": "Hospital",
+    "locale": "Bay Area",
+    "parser": {
+      "type": "HTMLParserSingle",
+      "url": "https://www.sfdph.org/dph/alerts/coronavirus-pressreleases.asp",
+      "mustContainKeyword": [],
+      "fieldSelectors": {
+        "headline": "",
+        "date": "",
+        "permalink": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "name":  "NYC City Council",
+    "tag": "State",
+    "locale": "New York",
+    "parser": {
+      "type": "HTMLParserMulti",
+      "url": "https://www1.nyc.gov/site/doh/health/health-topics/coronavirus.page",
+      "linkSelector": "",
+      "mustContainKeyword": [],
+      "fieldSelectors": {
+        "headline": "",
+        "date": "",
+        "permalink": "",
+        "description": ""
+      }
+    }
+  }
+]
