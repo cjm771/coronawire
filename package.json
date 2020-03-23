@@ -9,6 +9,9 @@
     "startDev": "nodemon --inspect --http-parser=legacy index.js",
     "scss": "node-sass --watch client/src/scss -o client/dist/css"
   },
+  "engines": {
+    "node": "12.4.0"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
