@@ -9,7 +9,6 @@ const parsers = {
 module.exports = async (req, res) => {
   let result = [];
   for (source of sources) {
-    console.log(source);
     if (parsers[source.parser.type]) {
       const parser = new parsers[source.parser.type](source.parser);
       try {

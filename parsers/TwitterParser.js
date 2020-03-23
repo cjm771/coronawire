@@ -36,7 +36,7 @@ module.exports = class TwitterParser extends BaseParser {
         let originalAuthor = undefined;
         if (item.retweeted_status) {
           originalAuthor =  {
-            date: item.retweeted_status.created_at,
+            date: new Date(item.retweeted_status.created_at),
             url: item.retweeted_status.entities.urls.length ? item.retweeted_status.entities.urls[0].url : null,
             author: {
               name: item.retweeted_status.user.name, 
@@ -47,7 +47,7 @@ module.exports = class TwitterParser extends BaseParser {
         }
         return {
           text: item.text,
-          date: item.created_at,
+          date: new Date(item.created_at),
           url: item.entities.urls.length ? item.entities.urls[0].url : null,
           originalAuthor: originalAuthor
         }
