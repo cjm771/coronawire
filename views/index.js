@@ -1,6 +1,7 @@
 const sources = require('../sources/main.json');
 
 const parsers = {
+  BaseParser: require('../parsers/BaseParser.js'),
   HTMLParserSingle: require('../parsers/HTMLParserSingle.js'),
   HTMLParserMulti: require('../parsers/HTMLParserMulti.js'),
   TwitterParser: require('../parsers/TwitterParser.js')
@@ -9,8 +10,11 @@ const parsers = {
 module.exports = async (req, res) => {
   let result = [];
   for (source of sources) {
+    if (source.disabled) {
+      continue;
+    }
     if (parsers[source.parser.type]) {
-      const parser = new parsers[source.parser.type](source.parser);
+      const parser = new (parsers[source.parser.type] || parsers.BaseParser)(source.parser);
       try {
         const parserResults = await parser.parse();
         result = [...result, ...parserResults];

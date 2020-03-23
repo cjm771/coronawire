@@ -1,7 +1,6 @@
 const BaseParser = require('./BaseParser.js');
-const random_useragent = require('random-useragent');
-const axios = require('axios');
-const cheerio = require('cheerio');
+const FetchService = require('../services/FetchService.js');
+
 
 module.exports = class HTMLParserSingle extends BaseParser {
   constructor(options) {
@@ -10,17 +9,13 @@ module.exports = class HTMLParserSingle extends BaseParser {
   }
 
   async parse() {
-    const response = await axios({
-      method: 'get',
-      url: this.url,
-      headers: {
-        'User-Agent': random_useragent.getRandom()
-      }
-    });
-    const html = response.data;
-    const $ = cheerio.load(html);
-    let results = [];
+    const $ = await FetchService.fetchAndLoad(this.url);
+    const results = [];
+    let useActualUrl = false;
+
     for (let [fieldName, selectorObj] of Object.entries(this.options.fieldSelectors)) {
+      let modifier  = 0;
+
       if (typeof selectorObj === 'string') {
         selectorObj = {
           selector: selectorObj,
@@ -28,7 +23,12 @@ module.exports = class HTMLParserSingle extends BaseParser {
           att: null
         }
       }
-      let modifier  = 0;
+      
+      if (fieldName === 'url' && selectorObj.selector === '{{this}}') {
+        useActualUrl = true;
+        continue;
+      }
+
       $(selectorObj.selector).each((i, elem) => {
         i += modifier;
         if (i > results.length - 1) {
@@ -41,7 +41,9 @@ module.exports = class HTMLParserSingle extends BaseParser {
         }
         let matches;
         if (selectorObj.pattern) {
+          debugger;
           matches = new RegExp(selectorObj.pattern).exec(tmpText);
+          if (matches)
           results[i][fieldName] = matches ? matches[1] : null;
         } else {
           results[i][fieldName] = tmpText;
@@ -55,9 +57,31 @@ module.exports = class HTMLParserSingle extends BaseParser {
         if (fieldName === 'date') {
           results[i][fieldName] = new Date(results[i][fieldName]);
         }
+        if (fieldName === 'description') {
+          debugger;
+          results[i][fieldName] = (results[i][fieldName] && results[i][fieldName].length > 128) ? results[i][fieldName].slice(0, 125) + '...' : results[i][fieldName];
+        }
       });
     }
+
+    if (useActualUrl) {
+      results.forEach((result) => {
+        result.url = this.url;
+      })
+    }
   
-    return results;
+    return results.filter((item) => {
+      if (this.options.mustContainKeyword && this.options.mustContainKeyword.length) {
+        let found = false;
+        this.options.mustContainKeyword.forEach((keyword) => {
+          if (item.text.indexOf(keyword) !== -1) {
+            found = true;
+          }
+        });
+        return found;
+      } else {
+        return true;
+      }
+    });
   }
 };

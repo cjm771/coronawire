@@ -1,6 +1,7 @@
 [
   {
     "name":  "The Centers for Disease Control and Prevention",
+    "disabled": true,
     "nickname": "CDC",
     "tag": "Federal",
     "locale": "National",
@@ -12,6 +13,7 @@
   },
   {
     "name":  "Zuckerberg San Francisco General Hospital",
+    "disabled": true,
     "tag": "Hospital",
     "locale": "Bay Area",
     "parser": {
@@ -48,14 +50,18 @@
     "locale": "New York",
     "parser": {
       "type": "HTMLParserMulti",
+      "dynamic": true,
       "url": "https://www1.nyc.gov/site/doh/health/health-topics/coronavirus.page",
-      "linkSelector": "",
+      "linkSelector": "#collapsible5 a",
       "mustContainKeyword": [],
       "fieldSelectors": {
-        "headline": "",
-        "date": "",
-        "permalink": "",
-        "description": ""
+        "headline": ".article-title",
+        "date": ".col-content .date",
+        "url": "{{this}}",
+        "description": {
+          "selector": ".col-content",
+          "pattern": "^(?:[\\s\\S]+)(?:\\w+\\s\\d{1,2},\\s\\d{4})[\\s\\S]+NEW\\s+YORK\\s*(?:–|—)\\s*([\\s\\S]+)"
+        }
       }
     }
   }
