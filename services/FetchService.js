@@ -8,7 +8,7 @@ module.exports = {
   fetchAndLoad : async (url, dynamic) => {
     let content;
     if (dynamic) {
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({ args: ['--no-sandbox']});
       const page =  await browser.newPage();
       await page.setUserAgent(random_useragent.getRandom());
       await page.goto(url);
