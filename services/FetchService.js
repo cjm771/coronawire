@@ -1,4 +1,5 @@
 
+process.binding('http_parser').HTTPParser = require('http-parser-js').HTTPParser;
 const axios = require('axios');
 const cheerio = require('cheerio');
 const random_useragent = require('random-useragent');

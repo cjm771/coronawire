@@ -21,6 +21,7 @@
     "express-handlebars": "^3.1.0",
     "express-ip": "^1.0.4",
     "express-static-gzip": "^2.0.6",
+    "http-parser-js": "^0.5.2",
     "moment": "^2.24.0",
     "puppeteer": "^2.1.1",
     "random-useragent": "^0.3.1",
