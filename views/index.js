@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
         })
         result = [...result, ...parserResults];
       } catch (e) {
+        console.log('An error ocurred:', JSON.stringify({...e}));
         result = {
           "error": true,
           "parser": source.parser.type,
