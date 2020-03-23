@@ -18,8 +18,40 @@ module.exports = class TwitterParser extends BaseParser {
 
   async parse() {
     try {
-      items = await client.get('statuses/user_timeline', { screen_name: this.twitterHandle, count: 50 });
-      return items;
+      const items = await client.get('statuses/user_timeline', { screen_name: this.twitterHandle, count: 50 });
+      return items.filter((item) => {
+        if (this.options.mustContainKeyword && this.options.mustContainKeyword.length) {
+          let found = false;
+          this.options.mustContainKeyword.forEach((keyword) => {
+            if (item.text.indexOf(keyword) !== -1) {
+              found = true;
+            }
+          })
+          return found;
+        } else {
+          return true;
+        }
+      }).map((item) => {
+        let url = item.entities.urls.length ? item.entities.urls[0].url : null;
+        let originalAuthor = undefined;
+        if (item.retweeted_status) {
+          originalAuthor =  {
+            date: item.retweeted_status.created_at,
+            url: item.retweeted_status.entities.urls.length ? item.retweeted_status.entities.urls[0].url : null,
+            author: {
+              name: item.retweeted_status.user.name, 
+              nickname: '@' + item.retweeted_status.user.screen_name
+            }
+          };
+          url = originalAuthor.url;
+        }
+        return {
+          text: item.text,
+          date: item.created_at,
+          url: item.entities.urls.length ? item.entities.urls[0].url : null,
+          originalAuthor: originalAuthor
+        }
+      });
     } catch (e) {
       throw e;
     }
