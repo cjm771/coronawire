@@ -1,0 +1,1 @@
+web: node --http-parser=legacy index.js
