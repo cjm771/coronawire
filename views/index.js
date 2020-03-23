@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
         })
         result = [...result, ...parserResults];
       } catch (e) {
-        console.log('An error ocurred:', JSON.stringify({...e}));
+        console.log('An error ocurred:', result, String(e), e, JSON.stringify({...e}));
         result = {
           "error": true,
           "parser": source.parser.type,
@@ -42,6 +42,7 @@ module.exports = async (req, res) => {
           "message": String(e),
           "errorDetail": JSON.stringify({...e})
         };
+        console.log('An error ocurred:', result, String(e), e, JSON.stringify({...e}));
       }
     }
   };

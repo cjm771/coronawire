@@ -15,6 +15,10 @@
         <div class="error">
           <h2>Uh oh :(</h2>
           <p> An error occurred while parsing..contact support</p>
+          <pre>
+parser: {{ result.parser }}
+source: {{ result.source }}
+message: {{ result.message }}</pre>
           <script>
             console.log('An error ocurred..', {{result.errorDetail}});
             </script>
