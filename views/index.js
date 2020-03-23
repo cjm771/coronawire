@@ -1,6 +1,7 @@
 const moment = require('moment');
 const LocaleService = require('../services/LocaleService.js');
 
+// parsers
 const parsers = {
   BaseParser: require('../parsers/BaseParser.js'),
   HTMLParserSingle: require('../parsers/HTMLParserSingle.js'),
@@ -8,6 +9,7 @@ const parsers = {
   TwitterParser: require('../parsers/TwitterParser.js')
 };
 
+// sources
 const sources = {
   national: require('../sources/national/national.json'),
   local: {
