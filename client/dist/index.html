@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="container__inner">
+      {{#if result.error }}
+        <h2>Uh oh</h2>
+        <p> An error occurred while parsing..contact support</p>
+      {{else}}
+        <h2>CoronaVirus Wire<sup><sup>beta</sup></sup></h2>
+        <div class="locale-selection-area">
+          <div class="input-group">
+            <div class="input-group__inner">
+              <label>Locale: </label>
+              <select class="locale-selection-area__select">
+                {{#each availableLocales}}
+                  <option value="{{this}}" {{selectedTextIfSet this locale }}>{{camelToDisplayCase this}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="badge-example-area">
+          <div class="badge locale locale--national">National</div>
+          <div class="badge locale locale--global">Global</div>
+          <div class="badge locale locale--local">Local</div>
+        </div>
+      {{#each result }}
+        <div class="post">
+          <div class="post__time">
+            <div class="post__time__inner locale {{getSourceBadgeClass this.source}}">
+              <div class="post__time__inner__inner">
+                {{{humanizeDate this.date }}}
+              </div>
+            </div>
+          </div>
+          <div class="post__body">
+            <div class="post__body__inner">
+              {{#if this.headline }}
+              <h4>{{ this.headline }}</h4>
+              {{/if}}
+              {{ this.description }} {{#if this.url }}<a href="{{ this.url }}" target="_blank" class="more">more..</a>{{/if}}
+            </div>
+          </div>
+          <div class="post__source">
+            <div class="post__source__inner">
+              <a href='{{getDisplaySourceURL this.source }}' target="_blank">{{getDisplaySourceName this.source }}</a>
+              <span class="post__source__sub-name">{{getDisplaySourceSubName this.source }}</span>
+            </div>
+          </div>
+          
+        </div>
+      {{/each}}
+      {{/if}}
+      </div>
+    </div>
+    <script src="/js/script.js" async defer></script>
+  </body>
+</html>

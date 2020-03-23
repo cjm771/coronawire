@@ -31,12 +31,15 @@ const distance = (lat1, lon1, lat2, lon2, unit) => {
 };
 
 module.exports = {
+  getAvailableLocaleNames: () => {
+    return locales.map((locale) => {
+      return locale.region;
+    })
+  },
   getLocale : async (req, res) => {
-    debugger;
-    // if (process.env.NODE_ENV === 'development') {
-    //   return locales[0];
-    // }
-    debugger;
+    if (process.env.NODE_ENV === 'development') {
+      return locales[0];
+    }
     if (req.cookies.locale) {
       const exists = locales.filter((locale) => {
         return locale.region === req.cookies.locale;

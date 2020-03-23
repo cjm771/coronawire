@@ -46,7 +46,7 @@ module.exports = class TwitterParser extends BaseParser {
           url = originalAuthor.url;
         }
         return {
-          text: item.text,
+          description: item.text,
           date: new Date(item.created_at),
           url: item.entities.urls.length ? item.entities.urls[0].url : null,
           originalAuthor: originalAuthor

@@ -1,0 +1,138 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  color: #333; }
+  body .container, html .container {
+    max-width: 70rem;
+    margin: 0px auto; }
+    body .container .container__inner, html .container .container__inner {
+      padding: 0 1rem; }
+      body .container .container__inner > h1,
+      body .container .container__inner > h2,
+      body .container .container__inner > h3,
+      body .container .container__inner > h4,
+      body .container .container__inner > h5, html .container .container__inner > h1,
+      html .container .container__inner > h2,
+      html .container .container__inner > h3,
+      html .container .container__inner > h4,
+      html .container .container__inner > h5 {
+        text-align: center; }
+        body .container .container__inner > h1 sup,
+        body .container .container__inner > h2 sup,
+        body .container .container__inner > h3 sup,
+        body .container .container__inner > h4 sup,
+        body .container .container__inner > h5 sup, html .container .container__inner > h1 sup,
+        html .container .container__inner > h2 sup,
+        html .container .container__inner > h3 sup,
+        html .container .container__inner > h4 sup,
+        html .container .container__inner > h5 sup {
+          font-weight: normal;
+          font-size: 0.8em; }
+    body .container a, html .container a {
+      color: #219cc2;
+      text-decoration: none;
+      transition: color .5s ease-in-out; }
+      body .container a:hover, html .container a:hover {
+        color: #73dbfa; }
+    body .container .input-group, html .container .input-group {
+      display: flex;
+      justify-content: center; }
+      body .container .input-group .input-group__inner, html .container .input-group .input-group__inner {
+        text-align: center;
+        max-width: 30rem;
+        width: 100%; }
+        body .container .input-group .input-group__inner label, html .container .input-group .input-group__inner label {
+          display: block; }
+        body .container .input-group .input-group__inner select, html .container .input-group .input-group__inner select {
+          max-height: calc(1.2em + 24px);
+          height: calc(1.2em + 24px);
+          outline: none !important; }
+        body .container .input-group .input-group__inner input,
+        body .container .input-group .input-group__inner textarea,
+        body .container .input-group .input-group__inner select, html .container .input-group .input-group__inner input,
+        html .container .input-group .input-group__inner textarea,
+        html .container .input-group .input-group__inner select {
+          width: 100%;
+          border: 0;
+          background: #f6f5f5;
+          padding: 1rem;
+          font-size: 1rem;
+          border-radius: .5rem;
+          box-shadow: 1px 1px 10px #ddd;
+          margin: .5rem auto; }
+    body .container .locale.badge, html .container .locale.badge {
+      display: inline-block;
+      padding: .5rem 1rem;
+      font-weight: 600;
+      border-radius: .5rem; }
+    body .container .locale.locale--national, html .container .locale.locale--national {
+      background-color: #f3d8ae; }
+    body .container .locale.locale--local, html .container .locale.locale--local {
+      background-color: #c2f1fd; }
+    body .container .locale.locale--global, html .container .locale.locale--global {
+      background-color: #fdccb8; }
+    body .container .badge-example-area, html .container .badge-example-area {
+      text-align: center;
+      padding: 1rem 0; }
+      @media screen and (max-width: 48rem) {
+        body .container .badge-example-area .badge, html .container .badge-example-area .badge {
+          display: block;
+          margin-bottom: 1rem; } }
+      @media screen and (min-width: 48rem) {
+        body .container .badge-example-area .badge:not(:last-child), html .container .badge-example-area .badge:not(:last-child) {
+          margin-right: 1rem; } }
+    body .container .post, html .container .post {
+      background-color: #fff;
+      overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 0px 2px 10px #c0c0c0;
+      display: flex;
+      flex-grow: 1;
+      margin-bottom: 2rem; }
+      body .container .post > *, html .container .post > * {
+        padding: 1rem; }
+      body .container .post .post__time, html .container .post .post__time {
+        padding: 0;
+        background: #eee;
+        width: 20%; }
+        body .container .post .post__time .post__time__inner, html .container .post .post__time .post__time__inner {
+          padding: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: calc(100% - 2rem); }
+          body .container .post .post__time .post__time__inner .post__time__inner__inner, html .container .post .post__time .post__time__inner .post__time__inner__inner {
+            text-align: center; }
+            body .container .post .post__time .post__time__inner .post__time__inner__inner b, html .container .post .post__time .post__time__inner .post__time__inner__inner b {
+              font-weight: 600;
+              display: block;
+              font-size: 2rem; }
+      body .container .post .post__body, html .container .post .post__body {
+        width: 60%;
+        display: flex;
+        align-items: center; }
+        body .container .post .post__body .post__body__inner a.more, html .container .post .post__body .post__body__inner a.more {
+          padding-left: .2rem;
+          font-weight: 600; }
+        body .container .post .post__body .post__body__inner h4, html .container .post .post__body .post__body__inner h4 {
+          padding: 0;
+          margin: 0;
+          padding-bottom: .5rem; }
+      body .container .post .post__source, html .container .post .post__source {
+        width: 20%;
+        display: flex;
+        align-items: center; }
+        body .container .post .post__source a, html .container .post .post__source a {
+          color: inherit;
+          text-decoration: underline; }
+        body .container .post .post__source .post__source__sub-name, html .container .post .post__source .post__source__sub-name {
+          display: block;
+          font-size: .8em;
+          color: #717171; }
+      @media screen and (max-width: 48rem) {
+        body .container .post, html .container .post {
+          flex-direction: column; }
+          body .container .post .post__time, body .container .post .post__body, body .container .post .post__source, html .container .post .post__time, html .container .post .post__body, html .container .post .post__source {
+            width: auto; } }

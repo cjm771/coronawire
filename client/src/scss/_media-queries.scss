@@ -1,0 +1,21 @@
+// Desktop small (Typical) 768+
+@mixin desktop {
+  @media screen and (min-width: 48rem) {
+    @content;
+  }
+}
+
+// Desktop medium 1000+ 
+@mixin desktop-md {
+  @media screen and (min-width: 62rem) {
+    @content;
+  }
+}
+
+// mobile only, @todo change to @mixin mobile-only
+@mixin mobile {
+  @media screen and (max-width: 48rem) {
+    @content;
+  }
+}
+

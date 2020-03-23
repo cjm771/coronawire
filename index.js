@@ -15,7 +15,7 @@ app.use(cookieParser())
 app.use(expressip().getIpInfoMiddleware);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('.html', exphbs({extname: '.html'}));
-app.set('views', path.resolve(__dirname, 'dist/'));
+app.set('views', path.resolve(__dirname, 'client/dist/'));
 app.set('view engine', '.html');
 
 app.use((req, res, next) => {
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 
 app.get('/', indexView);
 
-app.use('/', expressStaticGzip(path.resolve(__dirname, 'dist/'), {
+app.use('/', expressStaticGzip(path.resolve(__dirname, 'client/dist'), {
   enableBrotli: true,
   orderPreference: ['br', 'gz'],
   setHeaders: function (res, path) {
