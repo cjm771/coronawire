@@ -39,6 +39,7 @@ module.exports = async (req, res) => {
           "parser": source.parser.type,
           "source": source.name + " - " + source.locale,
           "message": String(e),
+          "errorDetail": JSON.stringify({...e})
         };
       }
     }

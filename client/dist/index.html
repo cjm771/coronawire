@@ -15,6 +15,9 @@
         <div class="error">
           <h2>Uh oh :(</h2>
           <p> An error occurred while parsing..contact support</p>
+          <script>
+            console.log('An error ocurred..', {{result.errorDetail}});
+            </script>
         </div>
       {{else}}
         <div class="locale-selection-area">
