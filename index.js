@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   };
   next();
 });
-
+app.get('/region/:region', indexView);
 app.get('/', indexView);
 
 app.use('/', expressStaticGzip(path.resolve(__dirname, 'client/dist'), {

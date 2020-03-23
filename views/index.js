@@ -57,8 +57,8 @@ module.exports = async (req, res) => {
     sources: sourcesFiltered,
     availableLocales: LocaleService.getAvailableLocaleNames(),
     helpers: {
-      selectedTextIfSet: (a,b) => {
-        return a === b ? 'selected' : ''
+      selectedTextIfSet: (a) => {
+        return a === userLocale.region ? 'selected' : ''
       },
       camelToDisplayCase: (val) => {
         return val.replace(/^(.)(.+)/, (m, m1, m2) => {

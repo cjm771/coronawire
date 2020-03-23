@@ -30,6 +30,17 @@ const distance = (lat1, lon1, lat2, lon2, unit) => {
   return dist
 };
 
+const getLocaleByName = (targetLocale) => {
+  const exists = locales.filter((locale) => {
+    return locale.region === targetLocale;
+  });
+  if (exists.length) {
+    return exists[0];
+  } else {
+    return null;
+  }
+}
+
 module.exports = {
   getAvailableLocaleNames: () => {
     return locales.map((locale) => {
@@ -37,15 +48,18 @@ module.exports = {
     })
   },
   getLocale : async (req, res) => {
-    if (process.env.NODE_ENV === 'development') {
+    if (req.params.region && getLocaleByName(req.params.region)) {
+      const forcedLocale = getLocaleByName(req.params.region);
+      res.clearCookie('locale');
+      res.cookie('locale', forcedLocale.region);
+      return forcedLocale;
+    } else if (!req.cookies.locale && process.env.NODE_ENV === 'development') {
       return locales[0];
     }
     if (req.cookies.locale) {
-      const exists = locales.filter((locale) => {
-        return locale.region === req.cookies.locale;
-      });
-      if (exists.length) {
-        return exists[0];
+      const foundLocale = getLocaleByName(req.cookies.locale);
+      if (foundLocale) {
+        return foundLocale;
       } else {
         res.clearCookie('locale');
       }
