@@ -1,13 +1,18 @@
-const path = require('path');
 require('dotenv').config();
+const path = require('path');
 const express = require("express");
 const exphbs = require('express-handlebars');
 const expressStaticGzip = require("express-static-gzip");
+const expressip = require('express-ip');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
-const app = express();
+
 const indexView = require('./views/index.js');
 
+const app = express();
+app.use(cookieParser())
+app.use(expressip().getIpInfoMiddleware);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('.html', exphbs({extname: '.html'}));
 app.set('views', path.resolve(__dirname, 'dist/'));

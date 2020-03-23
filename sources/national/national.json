@@ -1,0 +1,11 @@
+[{
+  "name":  "The Centers for Disease Control and Prevention",
+  "nickname": "CDC",
+  "tag": "Federal",
+  "locale": "National",
+  "parser": {
+    "type": "TwitterParser",
+    "handle": "CDCgov",
+    "mustContainKeyword": []
+  }
+}]

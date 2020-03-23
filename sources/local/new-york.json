@@ -1,0 +1,23 @@
+[
+  {
+    "name":  "NYC City Council",
+    "tag": "State",
+    "locale": "New York",
+    "parser": {
+      "type": "HTMLParserMulti",
+      "dynamic": true,
+      "url": "https://www1.nyc.gov/site/doh/health/health-topics/coronavirus.page",
+      "linkSelector": "#collapsible5 a",
+      "mustContainKeyword": [],
+      "fieldSelectors": {
+        "headline": ".article-title",
+        "date": ".col-content .date",
+        "url": "{{this}}",
+        "description": {
+          "selector": ".col-content",
+          "pattern": "^(?:[\\s\\S]+)(?:\\w+\\s\\d{1,2},\\s\\d{4})[\\s\\S]+NEW\\s+YORK\\s*(?:–|—)\\s*([\\s\\S]+)"
+        }
+      }
+    }
+  }
+]

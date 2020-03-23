@@ -1,0 +1,32 @@
+[{
+  "name":  "Zuckerberg San Francisco General Hospital",
+  "tag": "Hospital",
+  "locale": "Bay Area",
+  "parser": {
+    "type": "HTMLParserSingle",
+    "url": "https://www.sfdph.org/dph/alerts/coronavirus-pressreleases.asp",
+    "mustContainKeyword": [],
+    "fieldSelectors": {
+      "headline": {
+        "selector": "#section-1 h4",
+        "pattern": "(.+?)\\s*-\\s*.+"
+      },
+      "date": {
+        "selector": "#section-1 h4",
+        "pattern": ".+\\s*-\\s*(.+)\\s*"
+      },
+      "url": {
+        "selector": "#section-1 p > a:first-child, #section-1 p br + a",
+        "ifMultipleTakeIndex": 0,
+        "att": "href",
+        "replace": [
+          ["^/(.+)$", "https://www.sfdph.org/$1"]
+        ]
+      },
+      "description": {
+        "selector": "#section-1 p",
+        "skipEmpty": true
+      }
+    }
+  }
+}]

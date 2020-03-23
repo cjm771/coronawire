@@ -41,7 +41,6 @@ module.exports = class HTMLParserSingle extends BaseParser {
         }
         let matches;
         if (selectorObj.pattern) {
-          debugger;
           matches = new RegExp(selectorObj.pattern).exec(tmpText);
           if (matches)
           results[i][fieldName] = matches ? matches[1] : null;
@@ -58,8 +57,7 @@ module.exports = class HTMLParserSingle extends BaseParser {
           results[i][fieldName] = new Date(results[i][fieldName]);
         }
         if (fieldName === 'description') {
-          debugger;
-          results[i][fieldName] = (results[i][fieldName] && results[i][fieldName].length > 128) ? results[i][fieldName].slice(0, 125) + '...' : results[i][fieldName];
+          results[i][fieldName] = (results[i][fieldName] && results[i][fieldName].length > 280) ? results[i][fieldName].slice(0, 277) + '...' : results[i][fieldName];
         }
       });
     }

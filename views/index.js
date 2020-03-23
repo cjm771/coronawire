@@ -1,4 +1,4 @@
-const sources = require('../sources/main.json');
+const LocaleService = require('../services/LocaleService.js');
 
 const parsers = {
   BaseParser: require('../parsers/BaseParser.js'),
@@ -7,9 +7,19 @@ const parsers = {
   TwitterParser: require('../parsers/TwitterParser.js')
 };
 
+const sources = {
+  national: require('../sources/national/national.json'),
+  local: {
+    bayArea: require('../sources/local/bay-area.json'),
+    newYork: require('../sources/local/new-york.json')
+  }
+};
+
 module.exports = async (req, res) => {
+  const userLocale = await LocaleService.getLocale(req, res);
+  const sourcesFiltered = [...sources.national, ...sources.local[userLocale.region]];
   let result = [];
-  for (source of sources) {
+  for (source of sourcesFiltered) {
     if (source.disabled) {
       continue;
     }
@@ -27,5 +37,5 @@ module.exports = async (req, res) => {
       }
     }
   };
-  res.sendJSON(result);
+  res.sendJSON({ locale: userLocale.region, result: result });
 };
