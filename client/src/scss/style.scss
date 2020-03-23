@@ -113,6 +113,15 @@ body, html {
       }
     }
 
+    .error {
+      text-align: center;
+      background-color: #fff;
+      overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 0px 2px 10px #c0c0c0;
+      margin-top: 5rem;
+    }
+
     .post {
       background-color: #fff;
       overflow: hidden;

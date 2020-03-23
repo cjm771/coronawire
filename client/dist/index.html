@@ -10,9 +10,11 @@
   <body>
     <div class="container">
       <div class="container__inner">
-      {{#if result.error }}
-        <h2>Uh oh</h2>
-        <p> An error occurred while parsing..contact support</p>
+      {{#if result }}
+        <div class="error">
+          <h2>Uh oh :(</h2>
+          <p> An error occurred while parsing..contact support</p>
+        </div>
       {{else}}
         <h2>CoronaVirus Wire<sup><sup>beta</sup></sup></h2>
         <div class="locale-selection-area">

@@ -83,6 +83,13 @@ body, html {
       @media screen and (min-width: 48rem) {
         body .container .badge-example-area .badge:not(:last-child), html .container .badge-example-area .badge:not(:last-child) {
           margin-right: 1rem; } }
+    body .container .error, html .container .error {
+      text-align: center;
+      background-color: #fff;
+      overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 0px 2px 10px #c0c0c0;
+      margin-top: 5rem; }
     body .container .post, html .container .post {
       background-color: #fff;
       overflow: hidden;
